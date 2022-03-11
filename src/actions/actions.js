@@ -12,7 +12,7 @@ export const fetchTodo = () => (dispatch) => {
   dispatch({ type: FETCH_TODO_START })
 
   axios
-    .get("http://localhost:3000/todo/")
+    .get("https://joshsfullstacktodoapp.herokuapp.com/todo/")
     .then(data => {
       dispatch({ type: FETCH_TODO_SUCCESS, payload: data.data.todo_list })
     })
@@ -25,7 +25,7 @@ export const addToDo = (todo) => (dispatch) => {
   dispatch({ type: FETCH_TODO_START })
   console.log(todo)
   axios
-    .post("http://localhost:3000/todo/", todo)
+    .post("https://joshsfullstacktodoapp.herokuapp.com/todo/", todo)
     .then(data => dispatch({ type: ADD_TODO, payload: data.data.todo_item }))
     .catch(err => dispatch({ type: FETCH_TODO_FAIL, payload: err.message }))
   // 
@@ -34,17 +34,17 @@ export const addToDo = (todo) => (dispatch) => {
 export const removeToDo = (id, todo) => (dispatch) => {
   dispatch({ type: FETCH_TODO_START })
   axios
-    .delete(`http://localhost:3000/todo/${id}`)
+    .delete(`https://joshsfullstacktodoapp.herokuapp.com/todo/${id}`)
     .then(data => dispatch({ type: REMOVE_TODO, payload: todo }))
     .catch(err => dispatch({ type: FETCH_TODO_FAIL, payload: err.message }))
 
 }
 
-export const updateTodo = (id, update) => (dispatch) =>{
-  dispatch({type: FETCH_TODO_START})
+export const updateTodo = (id, update) => (dispatch) => {
+  dispatch({ type: FETCH_TODO_START })
   axios
-  .put(`http://localhost:3000/todo/${id}`, update)
-  .then(data => dispatch({type: UPDATE_TODO, payload: data.data.todo_item}))
-  .catch(err => dispatch({type: FETCH_TODO_FAIL, payload: err.message})
-  )
+    .put(`https://joshsfullstacktodoapp.herokuapp.com/todo/${id}`, update)
+    .then(data => dispatch({ type: UPDATE_TODO, payload: data.data.todo_item }))
+    .catch(err => dispatch({ type: FETCH_TODO_FAIL, payload: err.message })
+    )
 }
